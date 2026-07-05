@@ -1,22 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
-
-/**
- *
- * @author guebanget
- */
+import controller.loginController;
 public class pageLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageLogin.class.getName());
-
-    /**
-     * Creates new form pageLogin
-     */
     public pageLogin() {
         initComponents();
+
     }
 
     /**
@@ -109,13 +98,13 @@ public class pageLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textUsernameActionPerformed
-
     private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textPasswordActionPerformed
+
+    private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,12 +132,12 @@ public class pageLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnLogin;
-    public javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public javax.swing.JTextField textPassword;
-    public javax.swing.JTextField textUsername;
+    private javax.swing.JTextField textPassword;
+    private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,5 @@
 package model.entity;
 
-//import config.connector;
-//import java.sql.SQLException;
-//import java.awt.HeadlessException;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-
 public class user{
     private String username,password,role,email;
     private int id;
