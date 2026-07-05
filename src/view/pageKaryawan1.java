@@ -8,14 +8,14 @@ package view;
  *
  * @author guebanget
  */
-public class pageLowongan extends javax.swing.JFrame {
+public class pageKaryawan1 extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageLowongan.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageKaryawan1.class.getName());
 
     /**
      * Creates new form pageLowongan
      */
-    public pageLowongan() {
+    public pageKaryawan1() {
         initComponents();
     }
 
@@ -237,7 +237,7 @@ public class pageLowongan extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new pageLowongan().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new pageKaryawan1().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

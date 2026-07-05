@@ -8,14 +8,14 @@ package view;
  *
  * @author guebanget
  */
-public class pageKelolaLowongan extends javax.swing.JFrame {
+public class pagePerusahaan1 extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageKelolaLowongan.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pagePerusahaan1.class.getName());
 
     /**
      * Creates new form pageKelolaLowongan
      */
-    public pageKelolaLowongan() {
+    public pagePerusahaan1() {
         initComponents();
     }
 
@@ -84,7 +84,7 @@ public class pageKelolaLowongan extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnLowongan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRating, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -263,7 +263,7 @@ public class pageKelolaLowongan extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new pageKelolaLowongan().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new pagePerusahaan1().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

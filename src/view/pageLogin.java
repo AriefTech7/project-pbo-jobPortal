@@ -143,12 +143,12 @@ public class pageLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegister;
+    public javax.swing.JButton btnLogin;
+    public javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField textPassword;
-    private javax.swing.JTextField textUsername;
+    public javax.swing.JTextField textPassword;
+    public javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }
