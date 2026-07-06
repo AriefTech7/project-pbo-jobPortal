@@ -451,7 +451,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         cl.show(panelKontainer, "halamanLamaran");    }//GEN-LAST:event_btnLamaranActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
