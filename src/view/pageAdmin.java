@@ -20,6 +20,18 @@ public class pageAdmin extends javax.swing.JFrame {
         btnHapus.addActionListener(e ->{
             controllerU.deleteUlasan();
         });
+        btnApprove.addActionListener(e ->{
+            controllerP.approve();
+        });
+        btnReject.addActionListener(e ->{
+            controllerP.reject();
+        });
+        btnSearch.addActionListener(e->{
+            controllerP.searchData();
+        });
+        search.addActionListener(e->{
+            controllerP.searchData();
+        });
     }
 
     /**
@@ -41,10 +53,10 @@ public class pageAdmin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePerusahaan = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btnReject = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        search = new javax.swing.JTextField();
+        btnApprove = new javax.swing.JButton();
         panelUlasan = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -53,7 +65,6 @@ public class pageAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(790, 550));
-        setPreferredSize(new java.awt.Dimension(790, 550));
 
         panelMenu.setBackground(new java.awt.Color(255, 102, 51));
 
@@ -121,15 +132,15 @@ public class pageAdmin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablePerusahaan);
 
-        jButton1.setText("Reject");
+        btnReject.setText("Reject");
 
-        jButton2.setText("Search");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
 
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        search.addActionListener(this::searchActionPerformed);
 
-        jButton3.setText("Approve");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnApprove.setText("Approve");
+        btnApprove.addActionListener(this::btnApproveActionPerformed);
 
         javax.swing.GroupLayout panelSIUPLayout = new javax.swing.GroupLayout(panelSIUP);
         panelSIUP.setLayout(panelSIUPLayout);
@@ -139,20 +150,20 @@ public class pageAdmin extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28))
             .addGroup(panelSIUPLayout.createSequentialGroup()
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSIUPLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addGap(188, 188, 188)
+                        .addComponent(jLabel3))
                     .addGroup(panelSIUPLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel3)))
+                        .addGap(116, 116, 116)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSIUPLayout.setVerticalGroup(
@@ -162,15 +173,15 @@ public class pageAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSIUPLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton3)
+                        .addComponent(btnApprove)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(btnReject))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
         );
@@ -249,17 +260,17 @@ public class pageAdmin extends javax.swing.JFrame {
         new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnApproveActionPerformed
 
     private void btnPerusahaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerusahaanActionPerformed
         java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
@@ -297,23 +308,23 @@ public class pageAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnApprove;
     private transient javax.swing.JButton btnHapus;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerusahaan;
+    public javax.swing.JButton btnReject;
+    public javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUlasan;
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelKontainer;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelSIUP;
     private javax.swing.JPanel panelUlasan;
+    public javax.swing.JTextField search;
     public javax.swing.JTable tablePerusahaan;
     public javax.swing.JTable tableUlasan;
     // End of variables declaration//GEN-END:variables

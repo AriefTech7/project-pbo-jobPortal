@@ -42,17 +42,14 @@ public class ulasanController {
     }
 
     public void deleteUlasan() {
-//        int selectedRow = view.tableUlasan.getSelectedRow(); 
-//
-//        if (selectedRow == -1) {
-//            JOptionPane.showMessageDialog(view, "Pilih ulasan yang ingin dihapus terlebih dahulu!");
-//            return;
-//        }
-        int rowUlasan = view.tablePerusahaan.getSelectedRow();
-        int idUlasan = (int) view.tableUlasan.getValueAt(rowUlasan, 0);
-//        boolean hasil = ulasanDAO.delUlasan(idUlasan);
+        int rowUlasan = view.tableUlasan.getSelectedRow(); 
 
-//        int idUlasan = (int) view.tableUlasan.getValueAt(selectedRow, 0); 
+        if (rowUlasan == -1) {
+            JOptionPane.showMessageDialog(view, "Pilih ulasan yang ingin dihapus terlebih dahulu!");
+            return;
+        }
+
+        int idUlasan = (int) view.tableUlasan.getValueAt(rowUlasan, 0); 
         boolean hasil = ulasanDAO.delUlasan(idUlasan);
         if (hasil) {
             JOptionPane.showMessageDialog(view, "Ulasan berhasil dihapus");
