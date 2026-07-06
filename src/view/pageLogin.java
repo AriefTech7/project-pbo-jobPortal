@@ -1,5 +1,6 @@
 package view;
 import controller.loginController;
+import view.pageRegister;
 public class pageLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageLogin.class.getName());
@@ -56,6 +57,7 @@ public class pageLogin extends javax.swing.JFrame {
 
         btnRegister.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         btnRegister.setText("Register");
+        btnRegister.addActionListener(this::btnRegisterActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +119,10 @@ public class pageLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        new pageRegister().setVisible(true);
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments

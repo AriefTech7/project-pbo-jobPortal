@@ -3,52 +3,10 @@ package model.DAO;
 import model.entity.user;
 import config.connector;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class loginDAOImpl implements loginDAO {
-//    @Override
-////    public user getById(int id) {
-////        String sql = "SELECT * FROM users WHERE id = ?";
-////        user pengguna = null;
-////        
-////        try (Connection conn = connector.configDB();
-////             PreparedStatement ps = conn.prepareStatement(sql)) {
-////            
-////            ps.setInt(1, id);
-////            ResultSet rs = ps.executeQuery();
-////            
-////            if (rs.next()) {
-////                pengguna = extractUserFromResultSet(rs);
-////            }
-////            
-////        } catch (SQLException e) {
-////            e.printStackTrace();
-////        }
-////        
-////        return pengguna;
-////    }
-    @Override
-    public List<user> getAll() {
-        String sql = "SELECT * FROM users ORDER BY id";
-        List<user> users = new ArrayList<>();
-        
-        try (Connection conn = connector.configDB();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            
-            while (rs.next()) {
-                user user = extractUserFromResultSet(rs);
-                users.add(user);
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return users;
-    }
     @Override
     public user login(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
