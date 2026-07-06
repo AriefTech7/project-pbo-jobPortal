@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
-/**
- *
- * @author guebanget
- */
+import view.pageLogin;
 public class pageKaryawan extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageKaryawan.class.getName());
@@ -431,6 +427,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
@@ -452,6 +449,7 @@ public class pageKaryawan extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         this.dispose();
+        new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**

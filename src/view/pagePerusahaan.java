@@ -4,10 +4,7 @@
  */
 package view;
 
-/**
- *
- * @author guebanget
- */
+import view.pageLogin;
 public class pagePerusahaan extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pagePerusahaan.class.getName());
@@ -383,6 +380,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         this.dispose();
+        new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

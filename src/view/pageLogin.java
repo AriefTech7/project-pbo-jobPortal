@@ -3,8 +3,15 @@ import controller.loginController;
 public class pageLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageLogin.class.getName());
+    private loginController controller;
     public pageLogin() {
+        controller = new loginController(this);
         initComponents();
+        btnLogin.addActionListener(e -> {
+            String username = textUsername.getText();
+            String password = new String(textPassword.getText());
+            controller.handleLogin(username, password);
+        });
 
     }
 
@@ -45,6 +52,7 @@ public class pageLogin extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(this::btnLoginActionPerformed);
 
         btnRegister.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         btnRegister.setText("Register");
@@ -106,6 +114,10 @@ public class pageLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textUsernameActionPerformed
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -132,12 +144,12 @@ public class pageLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegister;
+    public javax.swing.JButton btnLogin;
+    public javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField textPassword;
-    private javax.swing.JTextField textUsername;
+    public javax.swing.JTextField textPassword;
+    public javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }

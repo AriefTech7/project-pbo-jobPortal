@@ -7,7 +7,7 @@ public class connector {
     
     public static Connection configDB() throws SQLException {
         try {
-            String url = "jdbc:mysql://localhost:3306/PA_PBO"; 
+            String url = "jdbc:mysql://localhost:3306/pa_pbo"; 
             String user = "root"; 
             String pass = ""; 
 
