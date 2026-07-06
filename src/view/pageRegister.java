@@ -24,6 +24,9 @@ public class pageRegister extends javax.swing.JFrame {
             String email = textEmail.getText();
             controller.handleRegis(username, password, role, email);
         });
+        checkpwd.addActionListener(e -> {
+            controller.hidePassword();
+        });
     }
 
     /**
@@ -40,7 +43,6 @@ public class pageRegister extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         textUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        textPassword = new javax.swing.JTextField();
         rbKaryawan = new javax.swing.JRadioButton();
         buttonGroup1.add(rbKaryawan);
         jLabel4 = new javax.swing.JLabel();
@@ -49,6 +51,8 @@ public class pageRegister extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         textEmail = new javax.swing.JTextField();
         btnRegis = new javax.swing.JButton();
+        textPassword = new javax.swing.JPasswordField();
+        checkpwd = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,8 +66,6 @@ public class pageRegister extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel2.setText("Password");
-
-        textPassword.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         rbKaryawan.setText("karyawan");
 
@@ -80,12 +82,20 @@ public class pageRegister extends javax.swing.JFrame {
 
         btnRegis.setText("Registrasi");
 
+        checkpwd.setText("Show Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(btnRegis))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,18 +104,14 @@ public class pageRegister extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rbKaryawan)
-                            .addComponent(rbPerusahaan)
-                            .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                            .addComponent(textPassword)
-                            .addComponent(textEmail)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(btnRegis)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkpwd)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(rbKaryawan)
+                                .addComponent(rbPerusahaan)
+                                .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                .addComponent(textEmail)
+                                .addComponent(textPassword)))))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,11 +123,16 @@ public class pageRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkpwd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(rbKaryawan))
@@ -131,7 +142,7 @@ public class pageRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnRegis)
                 .addGap(23, 23, 23))
         );
@@ -172,6 +183,7 @@ public class pageRegister extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegis;
     private javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JCheckBox checkpwd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -180,7 +192,7 @@ public class pageRegister extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbKaryawan;
     private javax.swing.JRadioButton rbPerusahaan;
     private javax.swing.JTextField textEmail;
-    private javax.swing.JTextField textPassword;
+    public javax.swing.JPasswordField textPassword;
     private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }

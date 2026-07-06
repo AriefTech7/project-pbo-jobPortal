@@ -4,15 +4,22 @@
  */
 package view;
 import view.pageLogin;
+import controller.perusahaanController;
+import controller.ulasanController;
 public class pageAdmin extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageAdmin.class.getName());
-
-    /**
-     * Creates new form pageAdmin
-     */
+    private perusahaanController controllerP;
+    private ulasanController controllerU;
     public pageAdmin() {
         initComponents();
+        controllerP = new perusahaanController(this);
+        controllerP.loadAllData();
+        controllerU =new ulasanController(this);
+        controllerU.loadAllData();
+        btnHapus.addActionListener(e ->{
+            controllerU.deleteUlasan();
+        });
     }
 
     /**
@@ -33,7 +40,7 @@ public class pageAdmin extends javax.swing.JFrame {
         panelSIUP = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePerusahaan = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -41,8 +48,8 @@ public class pageAdmin extends javax.swing.JFrame {
         panelUlasan = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        tableUlasan = new javax.swing.JTable();
+        btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(790, 550));
@@ -101,7 +108,7 @@ public class pageAdmin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setText("SIUP Perusahaan");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePerusahaan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,7 +119,7 @@ public class pageAdmin extends javax.swing.JFrame {
                 "Nama Perusahaan", "Alamat", "Nomor SIUP", "status verifikasi"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablePerusahaan);
 
         jButton1.setText("Reject");
 
@@ -129,7 +136,7 @@ public class pageAdmin extends javax.swing.JFrame {
         panelSIUPLayout.setHorizontalGroup(
             panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSIUPLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +180,7 @@ public class pageAdmin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel4.setText("Ulasan");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableUlasan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -184,9 +191,9 @@ public class pageAdmin extends javax.swing.JFrame {
                 "ID", "Ulasan", "Rating", "Tanggal Ulasan"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableUlasan);
 
-        jButton4.setText("Hapus Ulasan");
+        btnHapus.setText("Hapus Ulasan");
 
         javax.swing.GroupLayout panelUlasanLayout = new javax.swing.GroupLayout(panelUlasan);
         panelUlasan.setLayout(panelUlasanLayout);
@@ -198,11 +205,11 @@ public class pageAdmin extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(btnHapus))
                     .addGroup(panelUlasanLayout.createSequentialGroup()
                         .addGap(216, 216, 216)
                         .addComponent(jLabel4)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         panelUlasanLayout.setVerticalGroup(
             panelUlasanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +219,7 @@ public class pageAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelUlasanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -290,24 +297,26 @@ public class pageAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private transient javax.swing.JButton btnHapus;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerusahaan;
     private javax.swing.JButton btnUlasan;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelKontainer;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelSIUP;
     private javax.swing.JPanel panelUlasan;
+    public javax.swing.JTable tablePerusahaan;
+    public javax.swing.JTable tableUlasan;
     // End of variables declaration//GEN-END:variables
+
+    
 }

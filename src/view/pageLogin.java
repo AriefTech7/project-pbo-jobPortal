@@ -13,6 +13,9 @@ public class pageLogin extends javax.swing.JFrame {
             String password = new String(textPassword.getText());
             controller.handleLogin(username, password);
         });
+        checkpwd.addActionListener(e ->{
+            controller.hidePassword();
+        });
 
     }
 
@@ -28,10 +31,11 @@ public class pageLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         textUsername = new javax.swing.JTextField();
-        textPassword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
+        checkpwd = new javax.swing.JCheckBox();
+        textPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
@@ -45,9 +49,6 @@ public class pageLogin extends javax.swing.JFrame {
         textUsername.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         textUsername.addActionListener(this::textUsernameActionPerformed);
 
-        textPassword.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        textPassword.addActionListener(this::textPasswordActionPerformed);
-
         jLabel2.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jLabel2.setText("Password");
 
@@ -58,6 +59,9 @@ public class pageLogin extends javax.swing.JFrame {
         btnRegister.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         btnRegister.setText("Register");
         btnRegister.addActionListener(this::btnRegisterActionPerformed);
+
+        checkpwd.setText("Show Password");
+        checkpwd.addActionListener(this::checkpwdActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,13 +79,13 @@ public class pageLogin extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textUsername)
-                            .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(textPassword)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRegister))
+                                .addComponent(checkpwd)))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,23 +98,21 @@ public class pageLogin extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(textPassword))
-                .addGap(18, 18, 18)
+                    .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkpwd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegister)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textPasswordActionPerformed
 
     private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
         // TODO add your handling code here:
@@ -123,6 +125,10 @@ public class pageLogin extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         new pageRegister().setVisible(true);
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void checkpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkpwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkpwdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,10 +158,11 @@ public class pageLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnLogin;
     public javax.swing.JButton btnRegister;
+    public javax.swing.JCheckBox checkpwd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public javax.swing.JTextField textPassword;
+    public javax.swing.JPasswordField textPassword;
     public javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }

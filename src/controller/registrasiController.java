@@ -23,4 +23,11 @@ public class registrasiController {
         view.dispose();
         new pageLogin().setVisible(true);
     }
+    public void hidePassword(){
+        if (view.checkpwd.isSelected()){
+           view.textPassword.setEchoChar((char)0);
+        }else {
+            view.textPassword.setEchoChar('*');
+        }
+    }
 }

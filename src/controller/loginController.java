@@ -53,4 +53,12 @@ public class loginController {
                 JOptionPane.showMessageDialog(view, "Role tidak dikenali!");
         }
     }
+    
+    public void hidePassword(){
+        if (view.checkpwd.isSelected()){
+           view.textPassword.setEchoChar((char)0);
+        }else {
+            view.textPassword.setEchoChar('*');
+        }
+    }
 }
