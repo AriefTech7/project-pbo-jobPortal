@@ -4,15 +4,22 @@
  */
 package view;
 import view.pageLogin;
+import controller.karyawanController;
 public class pageKaryawan extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageKaryawan.class.getName());
-
-    /**
-     * Creates new form pageKaryawan
-     */
+    private karyawanController controller;
     public pageKaryawan() {
         initComponents();
+        controller = new karyawanController(this);
+        controller.loadDataLowongan();
+        btnSearch.addActionListener(e->{
+            controller.searchData();
+        });
+        search.addActionListener(e->{
+            controller.searchData();
+        });
+
     }
 
     /**
@@ -32,7 +39,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         panelKontainer = new javax.swing.JPanel();
         panelLowongan = new javax.swing.JPanel();
-        searchBox = new javax.swing.JTextField();
+        search = new javax.swing.JTextField();
         ratingBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableLowongan = new javax.swing.JTable();
@@ -42,6 +49,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         textAreaDP = new javax.swing.JTextArea();
         btnLamar = new javax.swing.JButton();
         btnCV = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         panelUlasan = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -130,7 +138,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         panelKontainer.setBackground(new java.awt.Color(102, 51, 255));
         panelKontainer.setLayout(new java.awt.CardLayout());
 
-        searchBox.addActionListener(this::searchBoxActionPerformed);
+        search.addActionListener(this::searchActionPerformed);
 
         ratingBox.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         ratingBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "rating 5", "rating 4", "rating 3", "rating 2", "rating 1" }));
@@ -161,6 +169,10 @@ public class pageKaryawan extends javax.swing.JFrame {
 
         btnCV.setText("Upload CV");
 
+        btnRefresh.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(this::btnRefreshActionPerformed);
+
         javax.swing.GroupLayout panelLowonganLayout = new javax.swing.GroupLayout(panelLowongan);
         panelLowongan.setLayout(panelLowonganLayout);
         panelLowonganLayout.setHorizontalGroup(
@@ -182,19 +194,22 @@ public class pageKaryawan extends javax.swing.JFrame {
                         .addGap(132, 132, 132)
                         .addComponent(ratingBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(4333, Short.MAX_VALUE))
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(4337, Short.MAX_VALUE))
         );
         panelLowonganLayout.setVerticalGroup(
             panelLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLowonganLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(panelLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ratingBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
+                    .addComponent(btnSearch)
+                    .addComponent(btnRefresh))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -430,9 +445,9 @@ public class pageKaryawan extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchBoxActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
     private void btnLowonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLowonganActionPerformed
         java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
@@ -451,6 +466,11 @@ public class pageKaryawan extends javax.swing.JFrame {
         this.dispose();
         new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        search.setText("");
+        controller.loadDataLowongan();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,12 +498,13 @@ public class pageKaryawan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCV;
-    private javax.swing.JButton btnLamar;
+    public javax.swing.JButton btnCV;
+    public javax.swing.JButton btnLamar;
     private javax.swing.JButton btnLamaran;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLowongan;
-    private javax.swing.JButton btnSearch;
+    public javax.swing.JButton btnRefresh;
+    public javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUlasan;
     private javax.swing.JLabel deskripsiPekerjaan;
     private javax.swing.JButton jButton1;
@@ -515,9 +536,9 @@ public class pageKaryawan extends javax.swing.JFrame {
     private javax.swing.JPanel panelLowongan;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelUlasan;
-    private javax.swing.JComboBox<String> ratingBox;
-    private javax.swing.JTextField searchBox;
-    private javax.swing.JTable tableLowongan;
-    private javax.swing.JTextArea textAreaDP;
+    public javax.swing.JComboBox<String> ratingBox;
+    public javax.swing.JTextField search;
+    public javax.swing.JTable tableLowongan;
+    public javax.swing.JTextArea textAreaDP;
     // End of variables declaration//GEN-END:variables
 }

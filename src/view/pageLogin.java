@@ -28,6 +28,7 @@ public class pageLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pageKaryawan1 = new view.pageKaryawan();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         textUsername = new javax.swing.JTextField();
@@ -162,6 +163,7 @@ public class pageLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private view.pageKaryawan pageKaryawan1;
     public javax.swing.JPasswordField textPassword;
     public javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables

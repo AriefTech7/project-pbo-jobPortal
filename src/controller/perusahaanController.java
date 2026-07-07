@@ -112,4 +112,115 @@ public class perusahaanController {
         view.tablePerusahaan.getColumnModel().getColumn(0).setMaxWidth(0);
         view.tablePerusahaan.getColumnModel().getColumn(0).setWidth(0);
     }
+
+    private Integer getSelectedId() {
+        int row = view.tablePerusahaan.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(view, "Pilih data terlebih dahulu.");
+            return null;
+        }
+        return (Integer) view.tablePerusahaan.getModel().getValueAt(row, 0);
+    }
+
+    public void addData() {
+        String nama = JOptionPane.showInputDialog(view, "Nama Perusahaan:");
+        if (nama == null || nama.trim().isEmpty()) {
+            return;
+        }
+
+        String alamat = JOptionPane.showInputDialog(view, "Alamat:");
+        if (alamat == null) {
+            return;
+        }
+
+        String nomorSiup = JOptionPane.showInputDialog(view, "Nomor SIUP:");
+        if (nomorSiup == null) {
+            return;
+        }
+
+        String idUserStr = JOptionPane.showInputDialog(view, "ID User pemilik:");
+        if (idUserStr == null || idUserStr.trim().isEmpty()) {
+            return;
+        }
+        try {
+            int idUser = Integer.parseInt(idUserStr.trim());
+            perusahaan p = new perusahaan();
+            p.setId_user(idUser);
+            p.setNama(nama.trim());
+            p.setAlamat(alamat.trim());
+            p.setNomor_siup(nomorSiup.trim());
+            p.setStatus("pending");
+
+            if (perusahaanDAO.tambah(p)) {
+                JOptionPane.showMessageDialog(view, "Data berhasil ditambahkan.");
+                loadAllData();
+            } else {
+                JOptionPane.showMessageDialog(view, "Gagal menambahkan data.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(view, "ID User harus berupa angka.");
+        }
+    }
+
+    public void editData() {
+        Integer id = getSelectedId();
+        if (id == null) {
+            return;
+        }
+
+        int row = view.tablePerusahaan.getSelectedRow();
+        String namaLama = (String) view.tablePerusahaan.getModel().getValueAt(row, 1);
+        String alamatLama = (String) view.tablePerusahaan.getModel().getValueAt(row, 2);
+        String siupLama = (String) view.tablePerusahaan.getModel().getValueAt(row, 3);
+
+        String nama = JOptionPane.showInputDialog(view, "Nama Perusahaan:", namaLama);
+        if (nama == null || nama.trim().isEmpty()) {
+            return;
+        }
+
+        String alamat = JOptionPane.showInputDialog(view, "Alamat:", alamatLama);
+        if (alamat == null) {
+            return;
+        }
+
+        String nomorSiup = JOptionPane.showInputDialog(view, "Nomor SIUP:", siupLama);
+        if (nomorSiup == null) {
+            return;
+        }
+
+        perusahaan p = new perusahaan();
+        p.setId_perusahaan(id);
+        p.setNama(nama.trim());
+        p.setAlamat(alamat.trim());
+        p.setNomor_siup(nomorSiup.trim());
+
+        if (perusahaanDAO.edit(p)) {
+            JOptionPane.showMessageDialog(view, "Data berhasil diperbarui.");
+            loadAllData();
+        } else {
+            JOptionPane.showMessageDialog(view, "Gagal memperbarui data.");
+        }
+    }
+
+    public void delData() {
+        Integer id = getSelectedId();
+        if (id == null) {
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(view,
+                "Yakin ingin menghapus data ini?", "Konfirmasi",
+                JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (perusahaanDAO.hapus(id)) {
+            JOptionPane.showMessageDialog(view, "Data berhasil dihapus.");
+            loadAllData();
+        } else {
+            JOptionPane.showMessageDialog(view, "Gagal menghapus data.");
+        }
+    }
+
 }

@@ -32,6 +32,16 @@ public class pageAdmin extends javax.swing.JFrame {
         search.addActionListener(e->{
             controllerP.searchData();
         });
+        btnHapus1.addActionListener(e->{
+            controllerP.delData();
+        });
+        btnEdit.addActionListener(e->{
+            controllerP.editData();
+        });
+        btnTambah.addActionListener(e->{
+            controllerP.addData();
+        });
+        
     }
 
     /**
@@ -57,6 +67,10 @@ public class pageAdmin extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         search = new javax.swing.JTextField();
         btnApprove = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnHapus1 = new javax.swing.JButton();
         panelUlasan = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -142,6 +156,18 @@ public class pageAdmin extends javax.swing.JFrame {
         btnApprove.setText("Approve");
         btnApprove.addActionListener(this::btnApproveActionPerformed);
 
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(this::btnRefreshActionPerformed);
+
+        btnTambah.setText("Tambah");
+        btnTambah.addActionListener(this::btnTambahActionPerformed);
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(this::btnEditActionPerformed);
+
+        btnHapus1.setText("Hapus");
+        btnHapus1.addActionListener(this::btnHapus1ActionPerformed);
+
         javax.swing.GroupLayout panelSIUPLayout = new javax.swing.GroupLayout(panelSIUP);
         panelSIUP.setLayout(panelSIUPLayout);
         panelSIUPLayout.setHorizontalGroup(
@@ -150,9 +176,13 @@ public class pageAdmin extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTambah)
+                    .addComponent(btnEdit)
+                    .addComponent(btnHapus1))
                 .addGap(28, 28, 28))
             .addGroup(panelSIUPLayout.createSequentialGroup()
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,28 +190,38 @@ public class pageAdmin extends javax.swing.JFrame {
                         .addGap(188, 188, 188)
                         .addComponent(jLabel3))
                     .addGroup(panelSIUPLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(130, 130, 130)
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSearch)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefresh)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         panelSIUPLayout.setVerticalGroup(
             panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSIUPLayout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearch)
+                    .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSearch)
+                        .addComponent(btnRefresh))
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(panelSIUPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSIUPLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(btnApprove)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReject))
+                        .addComponent(btnReject)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTambah)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEdit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnHapus1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
         );
@@ -282,6 +322,23 @@ public class pageAdmin extends javax.swing.JFrame {
         cl.show(panelKontainer, "halamanUlasan");
     }//GEN-LAST:event_btnUlasanActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        search.setText("");
+        controllerP.loadAllData();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapus1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,11 +366,15 @@ public class pageAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnApprove;
+    public javax.swing.JButton btnEdit;
     private transient javax.swing.JButton btnHapus;
+    public javax.swing.JButton btnHapus1;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerusahaan;
+    public javax.swing.JButton btnRefresh;
     public javax.swing.JButton btnReject;
     public javax.swing.JButton btnSearch;
+    public javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUlasan;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
