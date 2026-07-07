@@ -4,7 +4,7 @@ import java.sql.Date;
 public class lamaran {
     private int id_lamaran,id_lowongan,id_karyawan;
     private String nama,email,no_hp,cv,status;
-    private Date tangga_lamar;
+    private Date tanggal_lamar;
     private String nama_perusahaan,posisi;
 
     public int getId_lamaran() {
@@ -71,12 +71,12 @@ public class lamaran {
         this.status = status;
     }
 
-    public Date getTangga_lamar() {
-        return tangga_lamar;
+    public Date getTanggal_lamar() {
+        return tanggal_lamar;
     }
 
-    public void setTangga_lamar(Date tangga_lamar) {
-        this.tangga_lamar = tangga_lamar;
+    public void setTanggal_lamar(Date tanggal_lamar) {
+        this.tanggal_lamar = tanggal_lamar;
     }
 
     public String getNama_perusahaan() {

@@ -9,9 +9,20 @@ import model.entity.perusahaan;
 import model.entity.ulasan;
 
 public interface ulasanDAO {
+
     List<ulasan> getUlasan();
+
     boolean delUlasan(int idUlasan);
+
     boolean tambahUlasan(int idPerusahaan, int idKaryawan, int skorBintang, String isiUlasan);
+
     List<ulasan> getUlasanByPerusahaan(Integer idPerusahaan);
-     List<perusahaan> getPerusahaanApproved();
+
+    List<perusahaan> getPerusahaanApproved();
+
+    List<ulasan> getUlasanByPerusahaanJoin(int idPerusahaan);
+
+    double getAverageRating(int idPerusahaan);
+
+    boolean addUlasan(ulasan u);
 }

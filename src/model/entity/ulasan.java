@@ -6,7 +6,15 @@ package model.entity;
 import java.sql.Date;
 public class ulasan {
     private int id_ulasan,skor_bintang,id_perusahaan,id_karyawan;
-    private String isi_ulasan,nama_perusahaan;
+    private String isi_ulasan,nama_perusahaan,nama_karyawan;
+
+    public String getNama_karyawan() {
+        return nama_karyawan;
+    }
+
+    public void setNama_karyawan(String nama_karyawan) {
+        this.nama_karyawan = nama_karyawan;
+    }
     private Date tanggal_ulasan;
 
     public Date getTanggal_ulasan() {

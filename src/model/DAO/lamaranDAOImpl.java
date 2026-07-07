@@ -38,7 +38,7 @@ public class lamaranDAOImpl implements lamaranDAO {
                     lm.setEmail(rs.getString("email"));
                     lm.setNo_hp(rs.getString("no_hp"));
                     lm.setCv(rs.getString("cv"));
-                    lm.setTangga_lamar(rs.getDate("tanggal_lamar"));
+                    lm.setTanggal_lamar(rs.getDate("tanggal_lamar"));
                     lm.setStatus(rs.getString("status"));
                     lm.setPosisi(rs.getString("posisi"));
                     lm.setNama_perusahaan(rs.getString("nama_perusahaan"));

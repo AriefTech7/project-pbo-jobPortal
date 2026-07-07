@@ -225,7 +225,7 @@ public class karyawanController {
             model.addRow(new Object[]{
                 lm.getNama_perusahaan(),
                 lm.getPosisi(),
-                lm.getTangga_lamar(),
+                lm.getTanggal_lamar(),
                 formatStatus(lm.getStatus())
             });
         }

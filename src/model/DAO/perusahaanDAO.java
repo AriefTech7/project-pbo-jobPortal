@@ -3,6 +3,7 @@ package model.DAO;
 import model.entity.perusahaan;
 import model.entity.lowongan;
 import java.util.List;
+import model.entity.lamaran;
 
 public interface perusahaanDAO {
     //page Admin
@@ -28,4 +29,6 @@ public interface perusahaanDAO {
     boolean tambahLowongan(lowongan l);
     boolean ubahLowongan(lowongan l);
     boolean hapusLowongan(int idLowongan);
+    List<lamaran> getPelamar();
+    boolean updateStatusLamaran(int idLamaran, String status);
 }

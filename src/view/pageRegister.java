@@ -9,13 +9,21 @@ public class pageRegister extends javax.swing.JFrame {
     private registrasiController controller;
 
     public pageRegister() {
-        controller = new registrasiController(this);
         initComponents();
+//        textNamaPerusahaan.setVisible(false);
+//        labelPerusahaan.setVisible(false);
+//        labelAlamat.setVisible(false);
+//        textAlamat.setVisible(false);
+//        labelSIUP.setVisible(false);
+//        textSIUP.setVisible(false);
+        controller = new registrasiController(this);
+        
+//        controller.RoleSelection();
         btnRegis.addActionListener(e -> {
             String username = textUsername.getText();
             String password = new String(textPassword.getText());
             String role = "";
-
+                
             if (rbKaryawan.isSelected()) {
                 role = rbKaryawan.getText(); 
             } else if (rbPerusahaan.isSelected()) {
@@ -59,23 +67,23 @@ public class pageRegister extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("Registrasi");
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel1.setText("Username");
 
         textUsername.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel2.setText("Password");
 
         rbKaryawan.setText("karyawan");
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel4.setText("Pilihan Role");
 
         rbPerusahaan.setText("perusahaan");
         rbPerusahaan.addActionListener(this::rbPerusahaanActionPerformed);
 
-        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel6.setText("Email");
 
         textEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -91,19 +99,13 @@ public class pageRegister extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(btnRegis))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
-                        .addGap(44, 44, 44)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkpwd)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -111,8 +113,12 @@ public class pageRegister extends javax.swing.JFrame {
                                 .addComponent(rbPerusahaan)
                                 .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                 .addComponent(textEmail)
-                                .addComponent(textPassword)))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                                .addComponent(textPassword))
+                            .addComponent(btnRegis)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel3)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,9 +148,9 @@ public class pageRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegis)
-                .addGap(23, 23, 23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,8 +195,8 @@ public class pageRegister extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton rbKaryawan;
-    private javax.swing.JRadioButton rbPerusahaan;
+    public javax.swing.JRadioButton rbKaryawan;
+    public javax.swing.JRadioButton rbPerusahaan;
     private javax.swing.JTextField textEmail;
     public javax.swing.JPasswordField textPassword;
     private javax.swing.JTextField textUsername;

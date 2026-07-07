@@ -47,12 +47,16 @@ public class ulasanDAOImpl implements ulasanDAO {
     }
 
     private ulasan extractUlasanFromResultSet(ResultSet rs) throws SQLException {
-        ulasan ulasan = new ulasan();
-        ulasan.setId_ulasan(rs.getInt("id_ulasan"));
-        ulasan.setSkor_bintang(rs.getInt("skor_bintang"));
-        ulasan.setIsi_ulasan(rs.getString("isi_ulasan"));
-        ulasan.setTanggal_ulasan(rs.getDate("tanggal_ulasan"));
-        return ulasan;
+        ulasan u = new ulasan();
+        u.setId_ulasan(rs.getInt("id_ulasan"));
+        u.setId_perusahaan(rs.getInt("id_perusahaan"));
+        u.setId_karyawan(rs.getInt("id_karyawan"));
+        u.setTanggal_ulasan(rs.getDate("tanggal_ulasan"));
+        u.setSkor_bintang(rs.getInt("skor_bintang"));
+        u.setIsi_ulasan(rs.getString("isi_ulasan"));
+        u.setNama_perusahaan(rs.getString("nama_perusahaan"));
+        u.setNama_karyawan(rs.getString("nama_karyawan"));
+        return u;
     }
 
     @Override
@@ -122,6 +126,75 @@ public class ulasanDAOImpl implements ulasanDAO {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
         return list;
+    }
+
+    @Override
+    public List<ulasan> getUlasanByPerusahaanJoin(int idPerusahaan) {
+        String sql = "SELECT u.*, p.nama as nama_perusahaan, k.username as nama_karyawan "
+                + "FROM ulasan u "
+                + "JOIN perusahaan p ON u.id_perusahaan = p.id_perusahaan "
+                + "JOIN users k ON u.id_karyawan = k.id_user "
+                + "WHERE u.id_perusahaan = ? "
+                + "ORDER BY u.tanggal_ulasan DESC";
+
+        List<ulasan> list = new ArrayList<>();
+
+        try (Connection conn = connector.configDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idPerusahaan);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ulasan u = extractUlasanFromResultSet(rs);
+                    list.add(u);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return list;
+    }
+
+    @Override
+    public double getAverageRating(int idPerusahaan) {
+        
+        String sql = "SELECT AVG(skor_bintang) as avg_rating FROM ulasan WHERE id_perusahaan = ?";
+
+        try (Connection conn = connector.configDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idPerusahaan);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getDouble("avg_rating");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
+
+    @Override
+    public boolean addUlasan(ulasan u) {
+        String sql = "INSERT INTO ulasan (id_perusahaan, id_karyawan, tanggal_ulasan, skor_bintang, isi_ulasan) "
+                + "VALUES (?, ?, CURDATE(), ?, ?)";
+
+        try (Connection conn = connector.configDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, u.getId_perusahaan());
+            pstmt.setInt(2, u.getId_karyawan());
+            pstmt.setInt(3, u.getSkor_bintang());
+            pstmt.setString(4, u.getIsi_ulasan());
+
+            return pstmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            return false;
+        }
     }
 
 }

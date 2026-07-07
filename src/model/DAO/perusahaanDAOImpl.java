@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.entity.perusahaan;
+import model.entity.lamaran;
 import config.connector;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,8 +10,6 @@ import model.entity.lowongan;
 import javax.swing.JOptionPane;
 
 public class perusahaanDAOImpl implements perusahaanDAO {
-        
-    //page Admin
 
     @Override
     public List<perusahaan> getPerusahaan() {
@@ -133,7 +132,7 @@ public class perusahaanDAOImpl implements perusahaanDAO {
         }
         return list;
     }
-    
+
     //page Perusahaan
     @Override
     public int getIdPerusahaanByUser(int idUser) {
@@ -149,7 +148,7 @@ public class perusahaanDAOImpl implements perusahaanDAO {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
-        return -1; 
+        return -1;
     }
 
     @Override
@@ -160,7 +159,7 @@ public class perusahaanDAOImpl implements perusahaanDAO {
             pstmt.setInt(1, idPerusahaan);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    list.add(extractFromResultSet(rs));
+                    list.add(extractLowonganFromResultSet(rs));
                 }
             }
         } catch (SQLException e) {
@@ -168,6 +167,38 @@ public class perusahaanDAOImpl implements perusahaanDAO {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
         return list;
+    }
+
+    @Override
+    public List<lamaran> getPelamar() {
+        String sql = "SELECT la.*,lo.posisi FROM lamaran la,lowongan lo WHERE la.id_lowongan = lo.id_lowongan";
+        List<lamaran> list = new ArrayList<>();
+        try (Connection conn = connector.configDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    list.add(extractLamaranFromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return list;
+    }
+
+    private lamaran extractLamaranFromResultSet(ResultSet rs) throws SQLException {
+        lamaran l = new lamaran();
+        l.setId_lamaran(rs.getInt("id_lamaran"));
+        l.setId_lowongan(rs.getInt("id_lowongan"));
+        l.setId_karyawan(rs.getInt("id_karyawan"));
+        l.setNama(rs.getString("nama"));
+        l.setEmail(rs.getString("email"));
+        l.setNo_hp(rs.getString("no_hp"));
+        l.setCv(rs.getString("cv"));
+        l.setTanggal_lamar(rs.getDate("tanggal_lamar"));
+        l.setPosisi(rs.getString("posisi"));
+        l.setStatus(rs.getString("status"));
+        return l;
     }
 
     @Override
@@ -220,7 +251,7 @@ public class perusahaanDAOImpl implements perusahaanDAO {
         }
     }
 
-    private lowongan extractFromResultSet(ResultSet rs) throws SQLException {
+    private lowongan extractLowonganFromResultSet(ResultSet rs) throws SQLException {
         lowongan l = new lowongan();
         l.setId_lowongan(rs.getInt("id_lowongan"));
         l.setId_perusahaan(rs.getInt("id_perusahaan"));
@@ -229,6 +260,24 @@ public class perusahaanDAOImpl implements perusahaanDAO {
         l.setJenis_kontrak(rs.getString("jenis_kontrak"));
         l.setJobdesk(rs.getString("jobdesk"));
         return l;
+    }
+
+    @Override
+    public boolean updateStatusLamaran(int idLamaran, String status) {
+        String sql = "UPDATE lamaran SET status = ? WHERE id_lamaran = ?";
+
+        try (Connection conn = connector.configDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, status.toLowerCase());
+            pstmt.setInt(2, idLamaran);
+
+            return pstmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            return false;
+        }
     }
 
 }

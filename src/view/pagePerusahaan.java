@@ -19,10 +19,21 @@ public class pagePerusahaan extends javax.swing.JFrame {
         initComponents();
         controller = new perusahaanController(this);
         controller.loadDataLowongan();
+        controller.loadDataPelamar();
+        controller.loadUlasan();
         btnTambah.addActionListener(e -> controller.tambahLowongan());
         btnUbah.addActionListener(e -> controller.ubahLowongan());
         btnHapus.addActionListener(e -> controller.hapusLowongan());
         btnClear.addActionListener(e -> controller.clearForm());
+        btnUpdate.addActionListener(e-> controller.updateStatusLamaran());
+        
+        tablePelamar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            if (evt.getClickCount() == 1) {
+                controller.onRowSelected();
+            }
+        }
+    });
 
         tableLowongan.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -335,7 +346,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableUlasan);
 
         avgLabel.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        avgLabel.setText("Rating Budaya Kerja Anda: 4.5/5");
+        avgLabel.setText("Rating Budaya Kerja Anda: rata-rata rating/5");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setText("Rating & Ulasan");
@@ -347,15 +358,14 @@ public class pagePerusahaan extends javax.swing.JFrame {
             .addGroup(panelRatingUlasanLayout.createSequentialGroup()
                 .addGroup(panelRatingUlasanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRatingUlasanLayout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(panelRatingUlasanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRatingUlasanLayout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jLabel3))
-                            .addComponent(avgLabel)))
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabel3))
                     .addGroup(panelRatingUlasanLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRatingUlasanLayout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(avgLabel)))
                 .addContainerGap(275, Short.MAX_VALUE))
         );
         panelRatingUlasanLayout.setVerticalGroup(
@@ -365,9 +375,9 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(avgLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(359, Short.MAX_VALUE))
         );
 
         panelKontainer.add(panelRatingUlasan, "halamanRating");
