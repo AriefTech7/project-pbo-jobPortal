@@ -5,15 +5,29 @@
 package view;
 
 import view.pageLogin;
+import controller.perusahaanController;
+
 public class pagePerusahaan extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pagePerusahaan.class.getName());
+    private perusahaanController controller;
 
     /**
      * Creates new form pagePerusahaan
      */
     public pagePerusahaan() {
         initComponents();
+        controller = new perusahaanController(this);
+        btnTambah.addActionListener(e -> controller.tambahLowongan());
+        btnUbah.addActionListener(e -> controller.ubahLowongan());
+        btnHapus.addActionListener(e -> controller.hapusLowongan());
+        btnClear.addActionListener(e -> controller.clearForm());
+
+        tableLowongan.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                controller.pilihBaris();
+            }
+        });
     }
 
     /**
@@ -35,31 +49,31 @@ public class pagePerusahaan extends javax.swing.JFrame {
         panelKelolaLowongan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textGaji = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textJobdesk = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        boxKontrak = new javax.swing.JComboBox<>();
+        btnClear = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        textPosisi = new javax.swing.JTextField();
+        btnHapus = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableLowongan = new javax.swing.JTable();
         panelPelamar = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tablePelamar = new javax.swing.JTable();
+        boxStatus = new javax.swing.JComboBox<>();
+        btnCetak = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         panelRatingUlasan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        tableUlasan = new javax.swing.JTable();
+        avgLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,7 +149,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel8.setText("Jobdesk");
 
-        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        textGaji.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel7.setText("Jenis Kontrak");
@@ -143,27 +157,27 @@ public class pagePerusahaan extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel5.setText("Kelola Lowongan");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        textJobdesk.setColumns(20);
+        textJobdesk.setRows(5);
+        jScrollPane2.setViewportView(textJobdesk);
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel6.setText("Gaji");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tetap", "Kontrak", "Magang" }));
+        boxKontrak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tetap", "Kontrak", "Magang" }));
 
-        jButton6.setText("Clear");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
-        jButton1.setText("Tambah");
+        btnTambah.setText("Tambah");
 
-        jButton2.setText("Ubah");
+        btnUbah.setText("Ubah");
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        textPosisi.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
 
-        jButton3.setText("Hapus");
+        btnHapus.setText("Hapus");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableLowongan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -174,7 +188,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 "ID Lowongan", "Posisi", "Gaji", "Jenis Kontrak"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tableLowongan);
 
         javax.swing.GroupLayout panelKelolaLowonganLayout = new javax.swing.GroupLayout(panelKelolaLowongan);
         panelKelolaLowongan.setLayout(panelKelolaLowonganLayout);
@@ -194,21 +208,21 @@ public class pagePerusahaan extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(12, 12, 12)
                         .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxKontrak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textGaji, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textPosisi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(panelKelolaLowonganLayout.createSequentialGroup()
                         .addGap(184, 184, 184)
-                        .addComponent(jButton1)
+                        .addComponent(btnTambah)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnUbah)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnHapus)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
+                        .addComponent(btnClear)))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
         panelKelolaLowonganLayout.setVerticalGroup(
@@ -219,25 +233,25 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textPosisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textGaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxKontrak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelKelolaLowonganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton6))
+                    .addComponent(btnTambah)
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus)
+                    .addComponent(btnClear))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(190, Short.MAX_VALUE))
@@ -248,7 +262,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel9.setText("Pelamar Masuk");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablePelamar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -259,14 +273,14 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 "Nama Pelamar", "Email", "No HP", "Posisi ", "Tanggal Lamar", "Status"
             }
         ));
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane4.setViewportView(tablePelamar);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diproses", "Diterima", "Ditolak" }));
+        boxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diproses", "Diterima", "Ditolak" }));
 
-        jButton4.setText("Cetak ");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        btnCetak.setText("Cetak ");
+        btnCetak.addActionListener(this::btnCetakActionPerformed);
 
-        jButton5.setText("Update Status");
+        btnUpdate.setText("Update Status");
 
         javax.swing.GroupLayout panelPelamarLayout = new javax.swing.GroupLayout(panelPelamar);
         panelPelamar.setLayout(panelPelamarLayout);
@@ -279,34 +293,34 @@ public class pagePerusahaan extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelPelamarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton4)))
+                            .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnCetak)))
                     .addGroup(panelPelamarLayout.createSequentialGroup()
-                        .addGap(262, 262, 262)
+                        .addGap(269, 269, 269)
                         .addComponent(jLabel9)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         panelPelamarLayout.setVerticalGroup(
             panelPelamarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPelamarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel9)
-                .addGap(33, 33, 33)
+                .addGap(28, 28, 28)
                 .addGroup(panelPelamarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPelamarLayout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(btnUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnCetak)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(343, Short.MAX_VALUE))
         );
 
         panelKontainer.add(panelPelamar, "halamanPelamar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableUlasan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -317,10 +331,10 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 "Tanggal Ulasan", "Skor Bintang", "Isi Ulasan"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableUlasan);
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel4.setText("Rating Budaya Kerja Anda: 4.5/5");
+        avgLabel.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        avgLabel.setText("Rating Budaya Kerja Anda: 4.5/5");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setText("Rating & Ulasan");
@@ -337,7 +351,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
                             .addGroup(panelRatingUlasanLayout.createSequentialGroup()
                                 .addGap(59, 59, 59)
                                 .addComponent(jLabel3))
-                            .addComponent(jLabel4)))
+                            .addComponent(avgLabel)))
                     .addGroup(panelRatingUlasanLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -349,7 +363,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(avgLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(365, Short.MAX_VALUE))
@@ -383,9 +397,9 @@ public class pagePerusahaan extends javax.swing.JFrame {
         new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnCetakActionPerformed
 
     private void btnLowonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLowonganActionPerformed
         java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
@@ -402,9 +416,9 @@ public class pagePerusahaan extends javax.swing.JFrame {
         cl.show(panelKontainer, "halamanRating");
     }//GEN-LAST:event_btnRatingActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,21 +446,21 @@ public class pagePerusahaan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel avgLabel;
+    public javax.swing.JComboBox<String> boxKontrak;
+    public javax.swing.JComboBox<String> boxStatus;
+    public javax.swing.JButton btnCetak;
+    public javax.swing.JButton btnClear;
+    public javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKelolaLamar;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLowongan;
     private javax.swing.JButton btnRating;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    public javax.swing.JButton btnTambah;
+    public javax.swing.JButton btnUbah;
+    public javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -456,17 +470,17 @@ public class pagePerusahaan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel menu;
     private javax.swing.JPanel panelKelolaLowongan;
     private javax.swing.JPanel panelKontainer;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelPelamar;
     private javax.swing.JPanel panelRatingUlasan;
+    public javax.swing.JTable tableLowongan;
+    public javax.swing.JTable tablePelamar;
+    public javax.swing.JTable tableUlasan;
+    public javax.swing.JTextField textGaji;
+    public javax.swing.JTextArea textJobdesk;
+    public javax.swing.JTextField textPosisi;
     // End of variables declaration//GEN-END:variables
 }

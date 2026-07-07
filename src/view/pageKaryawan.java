@@ -39,24 +39,7 @@ public class pageKaryawan extends javax.swing.JFrame {
             }
         });
         boxRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"1", "2", "3", "4", "5"}));
-//        btnUlasan.addActionListener(e -> {
-//            java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
-//            cl.show(panelKontainer, "halamanUlasan");
-//            controller.loadComboPerusahaan();
-//            controller.loadUlasan();
-//        });
-//
-//        boxPerusahaanFilter.addActionListener(e -> controller.loadUlasan());
-//
-//        jTabbedPane1.addChangeListener(e -> {
-//            int index = jTabbedPane1.getSelectedIndex();
-//            if (index == 0) {
-//                controller.loadComboPerusahaan();
-//            } else if (index == 1) {
-//                controller.loadComboPerusahaan();
-//                controller.loadUlasan();
-//            }
-//        });
+
         btnUlasan.addActionListener(e -> {
             java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
             cl.show(panelKontainer, "halamanUlasan");
