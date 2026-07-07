@@ -8,4 +8,6 @@ import java.util.List;
 public interface karyawanDAO {
     List<lowongan> getLowongan();
     List<lowongan> search(String keyword);
+    List<lowongan> filter(String keyword, Integer minRating); 
+    List<ulasan> getUlasan();
 }

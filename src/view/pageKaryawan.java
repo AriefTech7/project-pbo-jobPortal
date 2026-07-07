@@ -19,6 +19,19 @@ public class pageKaryawan extends javax.swing.JFrame {
         search.addActionListener(e->{
             controller.searchData();
         });
+        btnCV.addActionListener(e->{
+            controller.uploadCV();
+        });
+        ratingBox.addActionListener(e->{
+            controller.filterData();
+        });
+        tableLowongan.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) {
+            controller.tampilkanJobdesk();
+        }
+    });
+        
+        
 
     }
 
