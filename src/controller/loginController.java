@@ -1,7 +1,9 @@
 package controller;
 
-import model.DAO.loginDAO;
-import model.DAO.loginDAOImpl;
+//import model.DAO.userDAO;
+//import model.DAO.userDAOImpl;
+import model.DAO.userDAO;
+import model.DAO.userDAOImpl;
 import model.entity.user;
 import config.SessionManager;
 import view.pageLogin;
@@ -12,12 +14,12 @@ import javax.swing.JOptionPane;
 
 public class loginController {
 
-    private loginDAO loginDAO;
+    private userDAO userDAO;
     private pageLogin view;
 
     public loginController(pageLogin view) {
         this.view = view;
-        this.loginDAO = new loginDAOImpl();
+        this.userDAO = new userDAOImpl();
     }
 
     public void handleLogin(String username, String password) {
@@ -26,8 +28,8 @@ public class loginController {
             return;
         }
         
-        user loggedInUser = loginDAO.login(username, password);
-        int id_User =loginDAO.selectID(username, password);
+        user loggedInUser = userDAO.login(username, password);
+        int id_User =userDAO.selectID(username, password);
         SessionManager.login(id_User); 
         if (loggedInUser == null) {
             JOptionPane.showMessageDialog(view, "Username atau password salah!");

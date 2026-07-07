@@ -153,7 +153,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbPerusahaan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="perushaan"/>
+        <Property name="text" type="java.lang.String" value="perusahaan"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbPerusahaanActionPerformed"/>

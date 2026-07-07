@@ -18,6 +18,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
     public pagePerusahaan() {
         initComponents();
         controller = new perusahaanController(this);
+        controller.loadDataLowongan();
         btnTambah.addActionListener(e -> controller.tambahLowongan());
         btnUbah.addActionListener(e -> controller.ubahLowongan());
         btnHapus.addActionListener(e -> controller.hapusLowongan());

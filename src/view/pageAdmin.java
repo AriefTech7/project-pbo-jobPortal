@@ -5,41 +5,38 @@
 package view;
 import view.pageLogin;
 import controller.adminController;
-import controller.ulasanController;
 public class pageAdmin extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageAdmin.class.getName());
-    private adminController controllerP;
-    private ulasanController controllerU;
+    private adminController controller;
     public pageAdmin() {
         initComponents();
-        controllerP = new adminController(this);
-        controllerP.loadAllData();
-        controllerU =new ulasanController(this);
-        controllerU.loadAllData();
+        controller = new adminController(this);
+        controller.loadAllDataPerusahaan();
+        controller.loadAllDataUlasan();
         btnHapus.addActionListener(e ->{
-            controllerU.deleteUlasan();
+            controller.deleteUlasan();
         });
         btnApprove.addActionListener(e ->{
-            controllerP.approve();
+            controller.approve();
         });
         btnReject.addActionListener(e ->{
-            controllerP.reject();
+            controller.reject();
         });
         btnSearch.addActionListener(e->{
-            controllerP.searchData();
+            controller.searchData();
         });
         search.addActionListener(e->{
-            controllerP.searchData();
+            controller.searchData();
         });
         btnHapus1.addActionListener(e->{
-            controllerP.delData();
+            controller.delData();
         });
         btnEdit.addActionListener(e->{
-            controllerP.editData();
+            controller.editData();
         });
         btnTambah.addActionListener(e->{
-            controllerP.addData();
+            controller.addData();
         });
         
     }
@@ -323,7 +320,7 @@ public class pageAdmin extends javax.swing.JFrame {
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         search.setText("");
-        controllerP.loadAllData();
+        controller.loadAllDataPerusahaan();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed

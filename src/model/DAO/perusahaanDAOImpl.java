@@ -149,7 +149,7 @@ public class perusahaanDAOImpl implements perusahaanDAO {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
-        return -1; // -1 artinya tidak ditemukan (user ini belum punya profil perusahaan)
+        return -1; 
     }
 
     @Override

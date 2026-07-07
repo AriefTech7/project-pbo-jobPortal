@@ -2,23 +2,28 @@ package controller;
 
 import model.DAO.perusahaanDAO;
 import model.DAO.perusahaanDAOImpl;
+import model.DAO.ulasanDAO;
+import model.DAO.ulasanDAOImpl;
 import model.entity.perusahaan;
 import view.pageAdmin;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.List;
+import model.entity.ulasan;
 
 public class adminController {
 
     private perusahaanDAO perusahaanDAO;
+    private ulasanDAO ulasanDAO;
     private pageAdmin view;
 
     public adminController(pageAdmin view) {
         this.view = view;
         this.perusahaanDAO = new perusahaanDAOImpl();
+        this.ulasanDAO = new ulasanDAOImpl();
     }
 
-    public void loadAllData() {
+    public void loadAllDataPerusahaan() {
         List<perusahaan> list = perusahaanDAO.getPerusahaan();
 
         String[] columns = {"ID Perusahaan", "Nama", "Alamat", "Nomor SIUP", "Status"};
@@ -57,7 +62,7 @@ public class adminController {
         boolean success = perusahaanDAO.updateStatus("approved", idPerusahaan);
         if (success) {
             JOptionPane.showMessageDialog(view, "Perusahaan disetujui.");
-            loadAllData();
+            loadAllDataPerusahaan();
         }
     }
 
@@ -73,7 +78,7 @@ public class adminController {
         boolean success = perusahaanDAO.updateStatus("rejected", idPerusahaan);
         if (success) {
             JOptionPane.showMessageDialog(view, "Perusahaan ditolak.");
-            loadAllData();
+            loadAllDataPerusahaan();
         }
     }
 
@@ -122,16 +127,24 @@ public class adminController {
 
     public void addData() {
         String nama = JOptionPane.showInputDialog(view, "Nama Perusahaan:");
-        if (nama == null || nama.trim().isEmpty()) return;
+        if (nama == null || nama.trim().isEmpty()) {
+            return;
+        }
 
         String alamat = JOptionPane.showInputDialog(view, "Alamat:");
-        if (alamat == null) return;
+        if (alamat == null) {
+            return;
+        }
 
         String nomorSiup = JOptionPane.showInputDialog(view, "Nomor SIUP:");
-        if (nomorSiup == null) return;
+        if (nomorSiup == null) {
+            return;
+        }
 
         String idUserStr = JOptionPane.showInputDialog(view, "ID User pemilik:");
-        if (idUserStr == null || idUserStr.trim().isEmpty()) return;
+        if (idUserStr == null || idUserStr.trim().isEmpty()) {
+            return;
+        }
 
         try {
             int idUser = Integer.parseInt(idUserStr.trim());
@@ -144,7 +157,7 @@ public class adminController {
 
             if (perusahaanDAO.tambah(p)) {
                 JOptionPane.showMessageDialog(view, "Data berhasil ditambahkan.");
-                loadAllData();
+                loadAllDataPerusahaan();
             } else {
                 JOptionPane.showMessageDialog(view, "Gagal menambahkan data.");
             }
@@ -155,7 +168,9 @@ public class adminController {
 
     public void editData() {
         Integer id = getSelectedId();
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
 
         int row = view.tablePerusahaan.getSelectedRow();
         String namaLama = (String) view.tablePerusahaan.getModel().getValueAt(row, 1);
@@ -163,13 +178,19 @@ public class adminController {
         String siupLama = (String) view.tablePerusahaan.getModel().getValueAt(row, 3);
 
         String nama = JOptionPane.showInputDialog(view, "Nama Perusahaan:", namaLama);
-        if (nama == null || nama.trim().isEmpty()) return;
+        if (nama == null || nama.trim().isEmpty()) {
+            return;
+        }
 
         String alamat = JOptionPane.showInputDialog(view, "Alamat:", alamatLama);
-        if (alamat == null) return;
+        if (alamat == null) {
+            return;
+        }
 
         String nomorSiup = JOptionPane.showInputDialog(view, "Nomor SIUP:", siupLama);
-        if (nomorSiup == null) return;
+        if (nomorSiup == null) {
+            return;
+        }
 
         perusahaan p = new perusahaan();
         p.setId_perusahaan(id);
@@ -179,7 +200,7 @@ public class adminController {
 
         if (perusahaanDAO.edit(p)) {
             JOptionPane.showMessageDialog(view, "Data berhasil diperbarui.");
-            loadAllData();
+            loadAllDataPerusahaan();
         } else {
             JOptionPane.showMessageDialog(view, "Gagal memperbarui data.");
         }
@@ -187,18 +208,63 @@ public class adminController {
 
     public void delData() {
         Integer id = getSelectedId();
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
 
         int confirm = JOptionPane.showConfirmDialog(view,
                 "Yakin ingin menghapus data ini?", "Konfirmasi",
                 JOptionPane.YES_NO_OPTION);
-        if (confirm != JOptionPane.YES_OPTION) return;
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
 
         if (perusahaanDAO.hapus(id)) {
             JOptionPane.showMessageDialog(view, "Data berhasil dihapus.");
-            loadAllData();
+            loadAllDataPerusahaan();
         } else {
             JOptionPane.showMessageDialog(view, "Gagal menghapus data.");
+        }
+    }
+
+    public void loadAllDataUlasan() {
+        List<ulasan> list = ulasanDAO.getUlasan();
+
+        String[] columns = {"ID", "Ulasan", "Rating", "Tanggal Ulasan"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        for (ulasan p : list) {
+            model.addRow(new Object[]{
+                p.getId_ulasan(),
+                p.getIsi_ulasan(),
+                p.getSkor_bintang(),
+                p.getTanggal_ulasan()
+            });
+
+        }
+        view.tableUlasan.setModel(model);
+    }
+
+    public void deleteUlasan() {
+        int rowUlasan = view.tableUlasan.getSelectedRow();
+
+        if (rowUlasan == -1) {
+            JOptionPane.showMessageDialog(view, "Pilih ulasan yang ingin dihapus terlebih dahulu!");
+            return;
+        }
+
+        int idUlasan = (int) view.tableUlasan.getValueAt(rowUlasan, 0);
+        boolean hasil = ulasanDAO.delUlasan(idUlasan);
+        if (hasil) {
+            JOptionPane.showMessageDialog(view, "Ulasan berhasil dihapus");
+            loadAllDataUlasan();
+        } else {
+            JOptionPane.showMessageDialog(view, "Ulasan gagal dihapus");
         }
     }
 }

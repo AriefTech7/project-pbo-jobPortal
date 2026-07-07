@@ -1,7 +1,16 @@
 package controller;
 
-import model.DAO.karyawanDAO;
-import model.DAO.karyawanDAOImpl;
+
+import model.DAO.lowonganDAO;
+import model.DAO.lowonganDAOImpl;
+import model.DAO.userDAO;
+import model.DAO.userDAOImpl;
+import model.DAO.lamaranDAO;
+import model.DAO.lamaranDAOImpl;
+import model.DAO.perusahaanDAO;
+import model.DAO.perusahaanDAOImpl;
+import model.DAO.ulasanDAO;
+import model.DAO.ulasanDAOImpl;
 import model.entity.lowongan;
 import model.entity.lamaran;
 import model.entity.ulasan;
@@ -19,18 +28,26 @@ import javax.swing.DefaultComboBoxModel;
 
 public class karyawanController {
 
-    private karyawanDAO karyawanDAO;
+    private lowonganDAO lowonganDAO;
+    private userDAO userDAO;
+    private lamaranDAO lamaranDAO;
+    private perusahaanDAO perusahaanDAO;
+    private ulasanDAO ulasanDAO;
     private pageKaryawan view;
     private File cvTerpilih;
     private Map<String, Integer> petaPerusahaan = new HashMap<>();
 
     public karyawanController(pageKaryawan view) {
         this.view = view;
-        this.karyawanDAO = new karyawanDAOImpl();
+        this.lowonganDAO=new lowonganDAOImpl();
+        this.userDAO=new userDAOImpl();
+        this.lamaranDAO=new lamaranDAOImpl();
+        this.perusahaanDAO=new perusahaanDAOImpl();
+        this.ulasanDAO=new ulasanDAOImpl();
     }
 
     public void loadDataLowongan() {
-        tampilkanDataLowongan(karyawanDAO.getLowongan());
+        tampilkanDataLowongan(lowonganDAO.getAll());
     }
 
     public void searchData() {
@@ -38,9 +55,9 @@ public class karyawanController {
         List<lowongan> list;
 
         if (keyword.isEmpty()) {
-            list = karyawanDAO.getLowongan();
+            list = lowonganDAO.getAll();
         } else {
-            list = karyawanDAO.search(keyword);
+            list = lowonganDAO.search(keyword);
         }
 
         String[] columns = {"ID lowongan", "ID Perusahaan", "Nama Perusahaan", "Posisi", "Gaji", "Jenis Kontrak"};
@@ -82,7 +99,8 @@ public class karyawanController {
                 minRating = Integer.parseInt(angka);
             }
         }
-        tampilkanDataLowongan(karyawanDAO.filter(keyword, minRating));
+        tampilkanDataLowongan(lowonganDAO.filter(keyword, minRating));
+        
     }
 
     private void sembunyikanKolom(int index) {
@@ -172,14 +190,14 @@ public class karyawanController {
             return;
         }
 
-        String email = karyawanDAO.getEmailById(idKaryawan); // ambil otomatis dari tabel users
+        String email = userDAO.getEmailById(idKaryawan);
         if (email == null) {
             JOptionPane.showMessageDialog(view, "Gagal mengambil data email user.");
             return;
         }
         int idLowongan = (int) view.tableLowongan.getModel().getValueAt(row, 0);
 
-        boolean berhasil = karyawanDAO.ajukanLamaran(
+        boolean berhasil = lamaranDAO.ajukanLamaran(
                 idLowongan, idKaryawan, nama.trim(), email, noHp.trim(), cvTerpilih.getAbsolutePath()
         );
 
@@ -193,7 +211,7 @@ public class karyawanController {
 
     public void loadRiwayat() {
         int currentID = SessionManager.getCurrentUser();
-        List<lamaran> list = karyawanDAO.getRiwayatByKaryawan(currentID);
+        List<lamaran> list =lamaranDAO.getRiwayatByKaryawan(currentID);
 
         String[] columns = {"Nama Perusahaan", "Posisi Pekerjaan", "Tanggal Lamaran", "Status Lamaran"};
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
@@ -232,7 +250,7 @@ public class karyawanController {
     }
 
     public void loadComboPerusahaan() {
-        List<perusahaan> list = karyawanDAO.getPerusahaanApproved();
+        List<perusahaan> list =perusahaanDAO.getApproved();
         petaPerusahaan.clear();
 
         String[] namaSaja = new String[list.size()];
@@ -247,7 +265,6 @@ public class karyawanController {
 
         view.boxPerusahaanTulis.setModel(new DefaultComboBoxModel<>(namaSaja));
         view.boxPerusahaanFilter.setModel(new DefaultComboBoxModel<>(namaDenganSemua));
-        // boxRating TIDAK disentuh di sini — biarkan statis "1".."5"
     }
 
     public void submitUlasan() {
@@ -272,7 +289,7 @@ public class karyawanController {
         int idKaryawan = SessionManager.getCurrentUser();
         int skorBintang = Integer.parseInt(ratingStr.trim());
 
-        boolean berhasil = karyawanDAO.tambahUlasan(idPerusahaan, idKaryawan, skorBintang, isiUlasan);
+        boolean berhasil = ulasanDAO.tambahUlasan(idPerusahaan, idKaryawan, skorBintang, isiUlasan);
 
         if (berhasil) {
             JOptionPane.showMessageDialog(view, "Ulasan berhasil dikirim. Terima kasih!");
@@ -291,7 +308,7 @@ public class karyawanController {
             idPerusahaan = petaPerusahaan.get(namaPerusahaan);
         }
 
-        List<ulasan> list = karyawanDAO.getUlasanByPerusahaan(idPerusahaan);
+        List<ulasan> list = ulasanDAO.getUlasanByPerusahaan(idPerusahaan);
 
         String[] columns = {"Tanggal Ulasan", "Skor Bintang", "Ulasan Pengalaman"};
         DefaultTableModel model = new DefaultTableModel(columns, 0) {

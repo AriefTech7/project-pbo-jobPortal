@@ -72,7 +72,7 @@ public class pageRegister extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel4.setText("Pilihan Role");
 
-        rbPerusahaan.setText("perushaan");
+        rbPerusahaan.setText("perusahaan");
         rbPerusahaan.addActionListener(this::rbPerusahaanActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N

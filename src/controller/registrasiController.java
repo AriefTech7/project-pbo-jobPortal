@@ -1,17 +1,19 @@
 package controller;
 import javax.swing.JOptionPane;
-import model.DAO.regisDAO;
-import model.DAO.regisDAOImpl;
+//import model.DAO.userDAO;
+//import model.DAO.userDAOImpl;
+import model.DAO.userDAO;
+import model.DAO.userDAOImpl;
 import model.entity.user;
 import view.pageLogin;
 import view.pageRegister;
 public class registrasiController {
-    private regisDAO regisDAO;
+    private userDAO userDAO;
     private pageRegister view;
     
     public registrasiController(pageRegister view){
         this.view=view;
-        this.regisDAO=new regisDAOImpl();
+        this.userDAO=new userDAOImpl();
     }
     
     public void handleRegis(String username, String password,String role,String email){
@@ -19,7 +21,7 @@ public class registrasiController {
             JOptionPane.showMessageDialog(view, "Ada data yang kosong!!");
             return;
         }
-        user registedUser = regisDAO.regis(username, password, role, email);
+        user registedUser = userDAO.regis(username, password, role, email);
         view.dispose();
         new pageLogin().setVisible(true);
     }
