@@ -3,6 +3,7 @@ package controller;
 import model.DAO.loginDAO;
 import model.DAO.loginDAOImpl;
 import model.entity.user;
+import config.SessionManager;
 import view.pageLogin;
 import view.pageAdmin;
 import view.pageKaryawan;
@@ -24,9 +25,10 @@ public class loginController {
             JOptionPane.showMessageDialog(view, "Username dan password wajib diisi!");
             return;
         }
-
+        
         user loggedInUser = loginDAO.login(username, password);
-
+        int id_User =loginDAO.selectID(username, password);
+        SessionManager.login(id_User); 
         if (loggedInUser == null) {
             JOptionPane.showMessageDialog(view, "Username atau password salah!");
             return;

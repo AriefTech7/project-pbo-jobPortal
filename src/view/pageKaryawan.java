@@ -13,6 +13,11 @@ public class pageKaryawan extends javax.swing.JFrame {
         initComponents();
         controller = new karyawanController(this);
         controller.loadDataLowongan();
+        controller.loadRiwayat();
+        btnLamar.addActionListener(e->{
+            controller.lamarSekarang();
+            controller.loadRiwayat();
+        });
         btnSearch.addActionListener(e->{
             controller.searchData();
         });
@@ -84,7 +89,7 @@ public class pageKaryawan extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         panelLamaran = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableLamaran = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -397,7 +402,7 @@ public class pageKaryawan extends javax.swing.JFrame {
 
         panelKontainer.add(panelUlasan, "halamanUlasan");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableLamaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -408,7 +413,7 @@ public class pageKaryawan extends javax.swing.JFrame {
                 "Nama Perusahaan", "Posisi Pekerjaan", "Tanggal Lamaran", "Status Lamaran"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tableLamaran);
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel6.setText("Riwayat & Status Lamaran Saya");
@@ -541,7 +546,6 @@ public class pageKaryawan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel panelKontainer;
@@ -551,6 +555,7 @@ public class pageKaryawan extends javax.swing.JFrame {
     private javax.swing.JPanel panelUlasan;
     public javax.swing.JComboBox<String> ratingBox;
     public javax.swing.JTextField search;
+    public javax.swing.JTable tableLamaran;
     public javax.swing.JTable tableLowongan;
     public javax.swing.JTextArea textAreaDP;
     // End of variables declaration//GEN-END:variables

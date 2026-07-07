@@ -4,31 +4,30 @@ import model.entity.user;
 import config.connector;
 import java.sql.*;
 
-
-
 public class loginDAOImpl implements loginDAO {
+
     @Override
     public user login(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         user user = null;
-        
-        try (Connection conn = connector.configDB();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
+
+        try (Connection conn = connector.configDB(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setString(1, username);
-            ps.setString(2, password); 
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 user = extractUserFromResultSet(rs);
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return user;
     }
+
     private user extractUserFromResultSet(ResultSet rs) throws SQLException {
         user user = new user();
         user.setId(rs.getInt("id_user"));
@@ -38,4 +37,27 @@ public class loginDAOImpl implements loginDAO {
         user.setRole(rs.getString("role"));
         return user;
     }
+
+    @Override
+    public int selectID(String username, String password) {
+        String sql = "SELECT id_user FROM users WHERE username = ? AND password = ?";
+        int idUser = -1; 
+
+        try (Connection conn = connector.configDB(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                idUser = rs.getInt("id_user");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return idUser;
+    }
+    
 }

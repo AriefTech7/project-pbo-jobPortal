@@ -3,7 +3,9 @@ package controller;
 import model.DAO.karyawanDAO;
 import model.DAO.karyawanDAOImpl;
 import model.entity.lowongan;
-import model.entity.ulasan;
+import model.entity.lamaran;
+import model.entity.user;
+import config.SessionManager;
 import view.pageKaryawan;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -25,7 +27,6 @@ public class karyawanController {
     public void loadDataLowongan() {
         tampilkanDataLowongan(karyawanDAO.getLowongan());
     }
-    
 
     public void searchData() {
         String keyword = view.search.getText().trim();
@@ -139,28 +140,48 @@ public class karyawanController {
         }
     }
 
-//    public void lamarSekarang() {
-//        int row = view.tableLowongan.getSelectedRow();
-//        if (row == -1) {
-//            JOptionPane.showMessageDialog(view, "Pilih lowongan terlebih dahulu.");
-//            return;
-//        }
-//        if (cvTerpilih == null) {
-//            JOptionPane.showMessageDialog(view, "Upload CV terlebih dahulu sebelum melamar.");
-//            return;
-//        }
-//
-//        int idLowongan = (int) view.tableLowongan.getModel().getValueAt(row, 0);
-//        int idKaryawan = Session.getIdUser();
-//
-//        boolean berhasil = karyawanDAO.ajukanLamaran(idLowongan, idKaryawan, cvTerpilih.getAbsolutePath());
-//
-//        if (berhasil) {
-//            JOptionPane.showMessageDialog(view, "Lamaran berhasil dikirim.");
-//        } else {
-//            JOptionPane.showMessageDialog(view, "Gagal mengirim lamaran.");
-//        }
-//    }
+    public void lamarSekarang() {
+       int row = view.tableLowongan.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(view, "Pilih lowongan terlebih dahulu.");
+            return;
+        }
+        if (cvTerpilih == null) {
+            JOptionPane.showMessageDialog(view, "Upload CV terlebih dahulu sebelum melamar.");
+            return;
+        }
+
+        int idKaryawan = SessionManager.getCurrentUser();
+        if (!SessionManager.isLoggedIn()) {
+            JOptionPane.showMessageDialog(view, "Sesi login tidak ditemukan. Silakan login ulang.");
+            return;
+        }
+
+        String nama = JOptionPane.showInputDialog(view, "Nama Lengkap:");
+        if (nama == null || nama.trim().isEmpty()) return;
+
+        String noHp = JOptionPane.showInputDialog(view, "Nomor HP:");
+        if (noHp == null || noHp.trim().isEmpty()) return;
+
+        String email = karyawanDAO.getEmailById(idKaryawan); // ambil otomatis dari tabel users
+        if (email == null) {
+            JOptionPane.showMessageDialog(view, "Gagal mengambil data email user.");
+            return;
+        }
+        int idLowongan = (int) view.tableLowongan.getModel().getValueAt(row, 0);
+
+        boolean berhasil = karyawanDAO.ajukanLamaran(
+            idLowongan, idKaryawan, nama.trim(), email, noHp.trim(), cvTerpilih.getAbsolutePath()
+        );
+
+        if (berhasil) {
+            JOptionPane.showMessageDialog(view, "Lamaran berhasil dikirim.");
+            cvTerpilih = null;
+        } else {
+            JOptionPane.showMessageDialog(view, "Gagal mengirim lamaran.");
+        }
+    }
+
 //    public void loadDataUlasan(){
 //        tampilkanDataUlasan(karyawanDAO.getUlasan());
 //    }
@@ -190,4 +211,43 @@ public class karyawanController {
 //        sembunyikanKolom(2);
 //
 //    }
+    public void loadRiwayat() {
+        int currentID = SessionManager.getCurrentUser();
+        List<lamaran> list = karyawanDAO.getRiwayatByKaryawan(currentID);
+
+        String[] columns = {"Nama Perusahaan", "Posisi Pekerjaan", "Tanggal Lamaran", "Status Lamaran"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        for (lamaran lm : list) {
+            model.addRow(new Object[]{
+                lm.getNama_perusahaan(),
+                lm.getPosisi(),
+                lm.getTangga_lamar(),
+                formatStatus(lm.getStatus())
+            });
+        }
+
+        view.tableLamaran.setModel(model);
+    }
+
+    private String formatStatus(String status) {
+        if (status == null) {
+            return "Diproses";
+        }
+        switch (status.toLowerCase()) {
+            case "diterima":
+                return "Diterima";
+            case "ditolak":
+                return "Ditolak";
+            case "diproses":
+                return "Diproses";
+            default:
+                return status;
+        }
+    }
 }

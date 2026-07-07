@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model.entity;
 import java.sql.Date;
 public class lamaran {
     private int id_lamaran,id_lowongan,id_karyawan;
     private String nama,email,no_hp,cv,status;
     private Date tangga_lamar;
+    private String nama_perusahaan,posisi;
 
     public int getId_lamaran() {
         return id_lamaran;
@@ -80,5 +78,22 @@ public class lamaran {
     public void setTangga_lamar(Date tangga_lamar) {
         this.tangga_lamar = tangga_lamar;
     }
+
+    public String getNama_perusahaan() {
+        return nama_perusahaan;
+    }
+
+    public void setNama_perusahaan(String nama_perusahaan) {
+        this.nama_perusahaan = nama_perusahaan;
+    }
+
+    public String getPosisi() {
+        return posisi;
+    }
+
+    public void setPosisi(String posisi) {
+        this.posisi = posisi;
+    }
+    
     
 }
