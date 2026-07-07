@@ -116,4 +116,18 @@ public class perusahaanDAOImpl implements perusahaanDAO {
         }
     }
 
+    @Override
+    public List<perusahaan> getApproved() {
+        String sql = "SELECT * FROM perusahaan WHERE status='approved' ORDER BY nama";
+        List<perusahaan> list = new ArrayList<>();
+        try (Connection conn = connector.configDB(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                list.add(extractPerusahaanFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

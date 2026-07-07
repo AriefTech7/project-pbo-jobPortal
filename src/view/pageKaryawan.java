@@ -3,40 +3,80 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+
 import view.pageLogin;
 import controller.karyawanController;
+
 public class pageKaryawan extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(pageKaryawan.class.getName());
     private karyawanController controller;
+
     public pageKaryawan() {
         initComponents();
         controller = new karyawanController(this);
         controller.loadDataLowongan();
         controller.loadRiwayat();
-        btnLamar.addActionListener(e->{
+        btnLamar.addActionListener(e -> {
             controller.lamarSekarang();
             controller.loadRiwayat();
         });
-        btnSearch.addActionListener(e->{
+        btnSearch.addActionListener(e -> {
             controller.searchData();
         });
-        search.addActionListener(e->{
+        search.addActionListener(e -> {
             controller.searchData();
         });
-        btnCV.addActionListener(e->{
+        btnCV.addActionListener(e -> {
             controller.uploadCV();
         });
-        ratingBox.addActionListener(e->{
+        ratingBox.addActionListener(e -> {
             controller.filterData();
         });
         tableLowongan.getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) {
-            controller.tampilkanJobdesk();
-        }
-    });
-        
-        
+            if (!e.getValueIsAdjusting()) {
+                controller.tampilkanJobdesk();
+            }
+        });
+        boxRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"1", "2", "3", "4", "5"}));
+//        btnUlasan.addActionListener(e -> {
+//            java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
+//            cl.show(panelKontainer, "halamanUlasan");
+//            controller.loadComboPerusahaan();
+//            controller.loadUlasan();
+//        });
+//
+//        boxPerusahaanFilter.addActionListener(e -> controller.loadUlasan());
+//
+//        jTabbedPane1.addChangeListener(e -> {
+//            int index = jTabbedPane1.getSelectedIndex();
+//            if (index == 0) {
+//                controller.loadComboPerusahaan();
+//            } else if (index == 1) {
+//                controller.loadComboPerusahaan();
+//                controller.loadUlasan();
+//            }
+//        });
+        btnUlasan.addActionListener(e -> {
+            java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
+            cl.show(panelKontainer, "halamanUlasan");
+            controller.loadComboPerusahaan();
+            controller.loadUlasan();
+        });
+
+        btnSubmit.addActionListener(e -> controller.submitUlasan());
+
+        boxPerusahaanFilter.addActionListener(e -> controller.loadUlasan());
+
+        jTabbedPane1.addChangeListener(e -> {
+            int index = jTabbedPane1.getSelectedIndex();
+            if (index == 0) {
+                controller.loadComboPerusahaan();
+            } else if (index == 1) {
+                controller.loadComboPerusahaan();
+                controller.loadUlasan();
+            }
+        });
 
     }
 
@@ -74,19 +114,19 @@ public class pageKaryawan extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        boxPerusahaanTulis = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        boxRating = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        areaUlasan = new javax.swing.JTextArea();
+        btnSubmit = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        boxPerusahaanFilter = new javax.swing.JComboBox<>();
+        totalUlasan = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableUlasan = new javax.swing.JTable();
         panelLamaran = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableLamaran = new javax.swing.JTable();
@@ -256,23 +296,23 @@ public class pageKaryawan extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel10.setText("Nama Perusahaan");
 
-        jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Perusahaan", " " }));
+        boxPerusahaanTulis.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        boxPerusahaanTulis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Perusahaan", " " }));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel11.setText("Rating");
 
-        jComboBox4.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
+        boxRating.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        boxRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel12.setText("Ulasan");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane5.setViewportView(jTextArea2);
+        areaUlasan.setColumns(20);
+        areaUlasan.setRows(5);
+        jScrollPane5.setViewportView(areaUlasan);
 
-        jButton1.setText("Submit");
+        btnSubmit.setText("Submit");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -280,17 +320,17 @@ public class pageKaryawan extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btnSubmit)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jLabel10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxPerusahaanTulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel11)
                             .addGap(18, 18, 18)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boxRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addGap(6, 6, 6)
                             .addComponent(jLabel12))
@@ -305,15 +345,15 @@ public class pageKaryawan extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxPerusahaanTulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnSubmit)
                 .addContainerGap(171, Short.MAX_VALUE))
         );
 
@@ -322,13 +362,12 @@ public class pageKaryawan extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel13.setText("Nama Perusahaan");
 
-        jComboBox5.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Perusahaan", " " }));
+        boxPerusahaanFilter.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        boxPerusahaanFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Perusahaan", " " }));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jLabel4.setText("Total Ulasan: xx Karyawan");
+        totalUlasan.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableUlasan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -339,7 +378,7 @@ public class pageKaryawan extends javax.swing.JFrame {
                 "Tanggal Ulasan", "Skor Bintang", "Ulasan Pengalaman"
             }
         ));
-        jScrollPane6.setViewportView(jTable2);
+        jScrollPane6.setViewportView(tableUlasan);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -352,9 +391,9 @@ public class pageKaryawan extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boxPerusahaanFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)))
+                        .addComponent(totalUlasan)))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -363,8 +402,8 @@ public class pageKaryawan extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(boxPerusahaanFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalUlasan))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
@@ -516,6 +555,10 @@ public class pageKaryawan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextArea areaUlasan;
+    public javax.swing.JComboBox<String> boxPerusahaanFilter;
+    public javax.swing.JComboBox<String> boxPerusahaanTulis;
+    public javax.swing.JComboBox<String> boxRating;
     public javax.swing.JButton btnCV;
     public javax.swing.JButton btnLamar;
     private javax.swing.JButton btnLamaran;
@@ -523,18 +566,14 @@ public class pageKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton btnLowongan;
     public javax.swing.JButton btnRefresh;
     public javax.swing.JButton btnSearch;
+    public javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnUlasan;
     private javax.swing.JLabel deskripsiPekerjaan;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -546,8 +585,6 @@ public class pageKaryawan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel panelKontainer;
     private javax.swing.JPanel panelLamaran;
     private javax.swing.JPanel panelLowongan;
@@ -557,6 +594,8 @@ public class pageKaryawan extends javax.swing.JFrame {
     public javax.swing.JTextField search;
     public javax.swing.JTable tableLamaran;
     public javax.swing.JTable tableLowongan;
+    public javax.swing.JTable tableUlasan;
     public javax.swing.JTextArea textAreaDP;
+    public javax.swing.JLabel totalUlasan;
     // End of variables declaration//GEN-END:variables
 }

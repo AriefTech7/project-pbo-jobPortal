@@ -10,4 +10,5 @@ import model.entity.ulasan;
 public interface ulasanDAO {
     List<ulasan> getUlasan();
     boolean delUlasan(int idUlasan);
+    
 }

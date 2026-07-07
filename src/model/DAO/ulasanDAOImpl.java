@@ -52,5 +52,5 @@ public class ulasanDAOImpl implements ulasanDAO {
         ulasan.setTanggal_ulasan(rs.getDate("tanggal_ulasan"));
         return ulasan;
     }
-
+   
 }

@@ -16,4 +16,5 @@ public interface perusahaanDAO {
     boolean edit(perusahaan p);
 
     boolean hapus(int id_perusahaan);
+    List<perusahaan> getApproved();
 }
