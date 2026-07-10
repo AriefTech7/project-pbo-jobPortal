@@ -5,12 +5,10 @@
         <group>
             <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/view/pageLogin.java</file>
             <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/DAO/ulasanDAOImpl.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/DAO/perusahaanDAOImpl.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/entity/ulasan.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/DAO/ulasanDAO.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/view/pageRegister.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/controller/registrasiController.java</file>
-            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/controller/adminController.java</file>
+            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/controller/perusahaanController.java</file>
+            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/DAO/lamaranDAOImpl.java</file>
+            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/model/DAO/lamaranDAO.java</file>
+            <file>file:/C:/Users/guebanget/Documents/project-pbo-jobPortal/src/controller/karyawanController.java</file>
         </group>
     </open-files>
 </project-private>

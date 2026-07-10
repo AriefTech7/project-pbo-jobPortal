@@ -2,15 +2,10 @@ package controller;
 
 
 import model.DAO.lowonganDAO;
-import model.DAO.lowonganDAOImpl;
 import model.DAO.userDAO;
-import model.DAO.userDAOImpl;
 import model.DAO.lamaranDAO;
-import model.DAO.lamaranDAOImpl;
 import model.DAO.perusahaanDAO;
-import model.DAO.perusahaanDAOImpl;
 import model.DAO.ulasanDAO;
-import model.DAO.ulasanDAOImpl;
 import model.entity.lowongan;
 import model.entity.lamaran;
 import model.entity.ulasan;
@@ -39,11 +34,11 @@ public class karyawanController {
 
     public karyawanController(pageKaryawan view) {
         this.view = view;
-        this.lowonganDAO=new lowonganDAOImpl();
-        this.userDAO=new userDAOImpl();
-        this.lamaranDAO=new lamaranDAOImpl();
-        this.perusahaanDAO=new perusahaanDAOImpl();
-        this.ulasanDAO=new ulasanDAOImpl();
+        this.lowonganDAO=new lowonganDAO();
+        this.userDAO=new userDAO();
+        this.lamaranDAO=new lamaranDAO();
+        this.perusahaanDAO=new perusahaanDAO();
+        this.ulasanDAO=new ulasanDAO();
     }
 
     public void loadDataLowongan() {

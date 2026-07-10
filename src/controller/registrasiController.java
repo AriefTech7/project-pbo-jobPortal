@@ -2,10 +2,7 @@ package controller;
 
 import javax.swing.JOptionPane;
 import model.DAO.userDAO;
-import model.DAO.userDAOImpl;
 import model.DAO.perusahaanDAO;
-import model.DAO.perusahaanDAOImpl;
-import model.entity.perusahaan;
 import model.entity.user;
 import view.pageLogin;
 import view.pageRegister;
@@ -18,8 +15,8 @@ public class registrasiController {
 
     public registrasiController(pageRegister view) {
         this.view = view;
-        this.userDAO = new userDAOImpl();
-        this.perusahaanDAO = new perusahaanDAOImpl();
+        this.userDAO = new userDAO();
+        this.perusahaanDAO = new perusahaanDAO();
     }
 
     public void handleRegis(String username, String password, String role, String email) {

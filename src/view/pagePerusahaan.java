@@ -80,7 +80,6 @@ public class pagePerusahaan extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tablePelamar = new javax.swing.JTable();
         boxStatus = new javax.swing.JComboBox<>();
-        btnCetak = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         panelRatingUlasan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -289,9 +288,6 @@ public class pagePerusahaan extends javax.swing.JFrame {
 
         boxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diproses", "Diterima", "Ditolak" }));
 
-        btnCetak.setText("Cetak ");
-        btnCetak.addActionListener(this::btnCetakActionPerformed);
-
         btnUpdate.setText("Update Status");
 
         javax.swing.GroupLayout panelPelamarLayout = new javax.swing.GroupLayout(panelPelamar);
@@ -306,8 +302,7 @@ public class pagePerusahaan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelPelamarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate)
-                            .addComponent(btnCetak)))
+                            .addComponent(btnUpdate)))
                     .addGroup(panelPelamarLayout.createSequentialGroup()
                         .addGap(269, 269, 269)
                         .addComponent(jLabel9)))
@@ -322,8 +317,6 @@ public class pagePerusahaan extends javax.swing.JFrame {
                 .addGroup(panelPelamarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPelamarLayout.createSequentialGroup()
                         .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCetak)
                         .addGap(18, 18, 18)
                         .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,10 +401,6 @@ public class pagePerusahaan extends javax.swing.JFrame {
         new pageLogin().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCetakActionPerformed
-
     private void btnLowonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLowonganActionPerformed
         java.awt.CardLayout cl = (java.awt.CardLayout) panelKontainer.getLayout();
         cl.show(panelKontainer, "halamanKelolaLowongan");
@@ -460,7 +449,6 @@ public class pagePerusahaan extends javax.swing.JFrame {
     public javax.swing.JLabel avgLabel;
     public javax.swing.JComboBox<String> boxKontrak;
     public javax.swing.JComboBox<String> boxStatus;
-    public javax.swing.JButton btnCetak;
     public javax.swing.JButton btnClear;
     public javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKelolaLamar;

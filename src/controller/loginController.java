@@ -1,9 +1,7 @@
 package controller;
 
-//import model.DAO.userDAO;
-//import model.DAO.userDAOImpl;
+
 import model.DAO.userDAO;
-import model.DAO.userDAOImpl;
 import model.entity.user;
 import config.SessionManager;
 import view.pageLogin;
@@ -19,7 +17,7 @@ public class loginController {
 
     public loginController(pageLogin view) {
         this.view = view;
-        this.userDAO = new userDAOImpl();
+        this.userDAO = new userDAO();
     }
 
     public void handleLogin(String username, String password) {

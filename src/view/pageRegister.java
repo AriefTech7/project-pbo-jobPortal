@@ -61,6 +61,7 @@ public class pageRegister extends javax.swing.JFrame {
         btnRegis = new javax.swing.JButton();
         textPassword = new javax.swing.JPasswordField();
         checkpwd = new javax.swing.JCheckBox();
+        btnKembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,8 +90,12 @@ public class pageRegister extends javax.swing.JFrame {
         textEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         btnRegis.setText("Registrasi");
+        btnRegis.addActionListener(this::btnRegisActionPerformed);
 
         checkpwd.setText("Show Password");
+
+        btnKembali.setText("Kembali");
+        btnKembali.addActionListener(this::btnKembaliActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +119,9 @@ public class pageRegister extends javax.swing.JFrame {
                                 .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                 .addComponent(textEmail)
                                 .addComponent(textPassword))
-                            .addComponent(btnRegis)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnKembali, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRegis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(191, 191, 191)
                         .addComponent(jLabel3)))
@@ -150,6 +157,8 @@ public class pageRegister extends javax.swing.JFrame {
                     .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegis)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnKembali)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -160,6 +169,15 @@ public class pageRegister extends javax.swing.JFrame {
     private void rbPerusahaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPerusahaanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbPerusahaanActionPerformed
+
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        this.dispose();
+        new pageLogin().setVisible(true);
+    }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +205,7 @@ public class pageRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnRegis;
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JCheckBox checkpwd;

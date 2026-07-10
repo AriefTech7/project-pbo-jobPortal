@@ -1,9 +1,7 @@
 package controller;
 
 import model.DAO.perusahaanDAO;
-import model.DAO.perusahaanDAOImpl;
 import model.DAO.ulasanDAO;
-import model.DAO.ulasanDAOImpl;
 import model.entity.lowongan;
 import view.pagePerusahaan;
 import javax.swing.table.DefaultTableModel;
@@ -24,8 +22,8 @@ public class perusahaanController {
 
     public perusahaanController(pagePerusahaan view) {
         this.view = view;
-        this.perusahaanDAO = new perusahaanDAOImpl();
-        this.ulasanDAO = new ulasanDAOImpl();
+        this.perusahaanDAO = new perusahaanDAO();
+        this.ulasanDAO = new ulasanDAO();
         this.idPerusahaan = perusahaanDAO.getIdPerusahaanByUser(SessionManager.getCurrentUser());
 
         if (idPerusahaan == -1) {

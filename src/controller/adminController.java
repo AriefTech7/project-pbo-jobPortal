@@ -1,9 +1,7 @@
 package controller;
 
 import model.DAO.perusahaanDAO;
-import model.DAO.perusahaanDAOImpl;
 import model.DAO.ulasanDAO;
-import model.DAO.ulasanDAOImpl;
 import model.entity.perusahaan;
 import view.pageAdmin;
 import javax.swing.table.DefaultTableModel;
@@ -13,14 +11,14 @@ import model.entity.ulasan;
 
 public class adminController {
 
-    private perusahaanDAO perusahaanDAO;
-    private ulasanDAO ulasanDAO;
-    private pageAdmin view;
+    private final perusahaanDAO perusahaanDAO;
+    private final ulasanDAO ulasanDAO;
+    private final pageAdmin view;
 
     public adminController(pageAdmin view) {
         this.view = view;
-        this.perusahaanDAO = new perusahaanDAOImpl();
-        this.ulasanDAO = new ulasanDAOImpl();
+        this.perusahaanDAO = new perusahaanDAO();
+        this.ulasanDAO = new ulasanDAO();
     }
 
     public void loadAllDataPerusahaan() {
