@@ -265,5 +265,42 @@ public class perusahaanDAO {
             return false;
         }
     }
+    public boolean regisPerusahaan(perusahaan perusahaan) {
+        String sql = "INSERT INTO perusahaan (id_user, nama, alamat, nomor_siup, status) VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection conn = connector.configDB();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setInt(1, perusahaan.getId_user());
+            ps.setString(2, perusahaan.getNama());
+            ps.setString(3, perusahaan.getAlamat());
+            ps.setString(4, perusahaan.getNomor_siup());
+            ps.setString(5, perusahaan.getStatus());
+            
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateStatus(int idUser, String status) {
+        String sql = "UPDATE perusahaan SET status = ? WHERE id_user = ?";
+        
+        try (Connection conn = connector.configDB();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, status);
+            ps.setInt(2, idUser);
+            
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

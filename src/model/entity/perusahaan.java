@@ -1,13 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.entity;
 
 public class perusahaan {
-   private int id_perusahaan,id_user;
-   private String nama,alamat,nomor_siup,status;
 
+    private int id_perusahaan, id_user;
+    private String nama, alamat, nomor_siup, status;
+    
+    public perusahaan() {}
+
+    public perusahaan(int idPerusahaan, int idUser, String nama, String alamat, String nomorSiup, String status) {
+        this.id_perusahaan = idPerusahaan;
+        this.id_user = idUser;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.nomor_siup = nomorSiup;
+        this.status = status;
+    }
+    
     public int getId_perusahaan() {
         return id_perusahaan;
     }
@@ -55,5 +63,5 @@ public class perusahaan {
     public void setStatus(String status) {
         this.status = status;
     }
-   
+
 }

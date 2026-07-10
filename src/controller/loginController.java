@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 
 public class loginController {
 
-    private userDAO userDAO;
-    private pageLogin view;
+    private final userDAO userDAO;
+    private final pageLogin view;
 
     public loginController(pageLogin view) {
         this.view = view;

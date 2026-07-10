@@ -23,14 +23,14 @@ import javax.swing.DefaultComboBoxModel;
 
 public class karyawanController {
 
-    private lowonganDAO lowonganDAO;
-    private userDAO userDAO;
-    private lamaranDAO lamaranDAO;
-    private perusahaanDAO perusahaanDAO;
-    private ulasanDAO ulasanDAO;
-    private pageKaryawan view;
+    private final lowonganDAO lowonganDAO;
+    private final userDAO userDAO;
+    private final lamaranDAO lamaranDAO;
+    private final perusahaanDAO perusahaanDAO;
+    private final ulasanDAO ulasanDAO;
+    private final pageKaryawan view;
     private File cvTerpilih;
-    private Map<String, Integer> petaPerusahaan = new HashMap<>();
+    private final Map<String, Integer> petaPerusahaan = new HashMap<>();
 
     public karyawanController(pageKaryawan view) {
         this.view = view;
